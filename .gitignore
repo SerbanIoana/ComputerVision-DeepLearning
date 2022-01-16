@@ -1,0 +1,7 @@
+**/train/*
+.idea/
+__pycache__
+.ipynb_checkpoints/*
+dataset
+resources/img_features.pkl
+resources/captions.txt
