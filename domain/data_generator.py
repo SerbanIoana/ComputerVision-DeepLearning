@@ -17,7 +17,7 @@ def create_sequences(tokenizer, max_length, desc_list, photo, vocab_size):
             # pad input sequence
             in_seq = pad_sequences([in_seq], maxlen=max_length)[0]
             # encode output sequence
-            out_seq = to_categorical([out_seq], num_classes=vocab_size)[0]
+            out_seq = to_categorical([out_seq], num_classes=vocab_size, dtype='uint8')[0]
             # store
             X1.append(photo)
             X2.append(in_seq)

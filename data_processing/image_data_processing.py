@@ -37,18 +37,6 @@ def process_image(filename):
     return img
 
 
-def process_image_v2(filename):
-    img = load_img(filename, target_size=(224, 224))
-    # convert the img pixels to a numpy array
-    img = img_to_array(img)
-    print(img.shape)
-    # reshape data for the model
-    img = img.reshape((1, img.shape[0], img.shape[1], img.shape[2]))
-    print(img.shape)
-    img = preprocess_input(img)
-    return img
-
-
 # extract features from each photo in the dir
 def extract_features(dir):
     # load the model
