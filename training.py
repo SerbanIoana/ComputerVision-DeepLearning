@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     # train the model, run iterations manually and save after each epoch
     iterations = 10
-    batch_size = 16
+    batch_size = 300
     steps = len(train_descriptions) // batch_size
     for i in range(iterations):
         # create the data generator
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         # compile with loss metrics
         model.compile(loss="mean_squared_error", optimizer="adam", metrics=["mean_squared_error"])
         # fit for one epoch
-        history = model.fit(generator, epochs=20, steps_per_epoch=steps, verbose=1)
+        history = model.fit(generator, epochs=5, steps_per_epoch=steps, verbose=1)
         # save model
         loss = history.history['loss']
         model_path = 'train_models\model_ep' + str(i) + '_loss' + ''.join(str(loss).split('.')) + '.h5'

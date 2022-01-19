@@ -13,20 +13,20 @@ from keras.utils.vis_utils import plot_model
 
 def define_model(vocab_size, max_length):
     # feature extractor model
-    inputs1 = Input(shape=(4096,))
-    fe1 = Dropout(0.5)(inputs1)
-    fe2 = Dense(256, activation='relu')(fe1)
+    f1 = Input(shape=(2048,))
+    f = Dropout(0.5)(f1)
+    f = Dense(256, activation='relu')(f)
     # sequence model
-    inputs2 = Input(shape=(max_length,))
-    se1 = Embedding(vocab_size, 256, mask_zero=True)(inputs2)
-    se2 = Dropout(0.5)(se1)
-    se3 = LSTM(256)(se2)
+    s1 = Input(shape=(max_length,))
+    s = Embedding(vocab_size, 256, mask_zero=True)(s1)
+    s = Dropout(0.5)(s)
+    s = LSTM(256)(s)
     # decoder model
-    decoder1 = add([fe2, se3])
-    decoder2 = Dense(256, activation='relu')(decoder1)
-    outputs = Dense(vocab_size, activation='softmax')(decoder2)
+    d = add([f, s])
+    d = Dense(256, activation='relu')(d)
+    d = Dense(vocab_size, activation='softmax')(d)
     # tie it together [image, seq] [word]
-    model = Model(inputs=[inputs1, inputs2], outputs=outputs)
+    model = Model(inputs=[f1, s1], outputs=d)
     # compile model
     return model
 
